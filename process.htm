@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<LINK REL="SHORTCUT ICON"
+       HREF="/user/favicon.ico">
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<![endif]-->
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="refresh" content="10">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CTEC Remote Data Viewer</title>
+<style>
+html {height: 100%;}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  background-color: #1B75BC; /*#1B75BC;*/
+  height: 100%;
+}
+
+.wrapper{
+  max-width: 1100px;
+  margin: auto;
+  position:relative;
+  background-color: white;
+  border: 8px solid #95B545;
+  min-height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.header {
+  color: black;
+  text-align: center;
+  padding: 0;
+}
+.footer {
+  background-color: #282A2B;
+  color: #8c8989;
+  padding: 0;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:60px;
+}
+
+.footer p {
+		margin:0;
+		padding:10px;
+	}
+
+p {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+#headerlogo {
+  padding: 10px;
+  display: block;
+  margin: auto;
+  max-width: 100%;
+}
+
+.imghead {
+  max-width: 400px;
+  margin: auto;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #363839;
+}
+
+.topnav a {
+    float: left;
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.dropdown {
+    float: left;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 17px;
+    display: inline-block;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+}
+
+.topnav a:hover, .dropdown:hover .dropbtn {
+    background-color: #CFD0D1;
+    color: black;
+}
+
+.topnav a.active {
+  background-color: #0E76BB;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 1;
+    width: 75%;
+    border: none;
+	margin: auto;
+}
+
+th, td {
+    border: none;
+    text-align: left;
+    padding: 8px;
+}
+
+.tblval {
+    border: 5px inset gray;
+    text-align: center;
+    padding: 5px;
+    background-color: #DCDCDC;
+}
+
+ul {
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+    width: 200px;
+    background-color: #0E76BB;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4), 0 6px 20px 0 rgba(0,0,0,0.4);
+}
+
+li a {
+    display: block;
+    color: white;
+    padding: 8px 16px;
+    font-size: 18px;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+}
+
+li a:hover {
+    background-color: #363839;
+    color: #f2f2f2;
+    border-radius: 5px;
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btncontainer {
+  padding: 50px 1px 150px;
+  visibility: hidden;
+}
+
+#alertbox {
+  background-color: black;
+  text-align: center;
+}
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+}
+
+.alert.success {background-color: #4CAF50;}
+.alert.info {background-color: #2196F3;}
+.test {
+    padding: 20px;
+    background-color: #ff9800;
+	color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+  table {width: 100%;}
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <div class="topnav" id="myTopnav">
+      <!-- <div class="dropdown">
+        <button class="dropbtn">Home</button>
+        <div class="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div> -->
+      <a href="default.htm">Home</a>
+      <a href="engine.htm">Engine</a>
+      <a href="trans.htm">Trans</a>
+      <a href="pump.htm">Pump</a>
+      <a href="process.htm" class="active">Process</a>
+      <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+    
+<div class="imghead">
+<img id="headerlogo" src="csplogo1.png" alt="csplogo1.png" style="max-width:100%;height:auto;">
+</div>
+
+<h1> <span style="font-style: oblique">CTEC</span><br>Remote Data Viewer</h1>
+ </div>
+ 
+ <div class="alert">
+  <span class="closebtn">&times;</span>  
+  <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+</div>
+
+<div class="alert success">
+  <span class="closebtn">&times;</span>  
+  <strong>Success!</strong> Indicates a successful or positive action.
+</div>
+
+<div class="alert info">
+  <span class="closebtn">&times;</span>  
+  <strong>Info!</strong> Indicates a neutral informative change or action.
+</div>
+
+<div class="test">
+  <strong>Warning!</strong> Indicates a warning that might need attention.
+</div>
+
+<hr>
+<h3 style="text-align: center">Process Data</h3>
+
+<div style="overflow-x:auto;">
+  <table>
+    <tr>
+      <th>Parameter</th>
+      <th style="text-align: center">Value</th>
+    </tr>
+	<tr>
+      <td>Discharge Pressure</td>
+      <td class="tblval">[[3]]</td>
+    </tr>
+	<tr>
+      <td>Discharge Pressure MPa</td>
+      <td class="tblval">[[1507]]</td>
+    </tr>
+	<tr>
+      <td>Pump Rate</td>
+      <td class="tblval">[[4]]</td>
+    </tr>
+	<tr>
+      <td>Pump Rate m<sup>3</sup></td>
+      <td class="tblval">[[1510]]</td>
+    </tr>
+	<tr>
+      <td>Engine Speed</td>
+      <td class="tblval">[[15]]</td>
+    </tr>
+	<tr>
+      <td>Current Gear</td>
+      <td class="tblval">[[188]]</td>
+    </tr>
+    <tr>
+      <td>Converter Lock Up</td>
+      <td class="tblval">[[189]]</td>
+    </tr>
+	<tr>
+      <td>Hydraulic HP</td>
+      <td class="tblval">[[191]]</td>
+    </tr>
+    <tr>
+      <td>Lube Oil Pressure</td>
+      <td class="tblval">[[32]]</td>
+    </tr>
+    <tr>
+      <td>Lube Oil Temperature</td>
+      <td class="tblval">[[35]]</td>
+    </tr>
+	<tr>
+      <td>Suction Pressure</td>
+      <td class="tblval">[[29]]</td>
+    </tr>
+	<tr>
+      <td>Trans Converter Temperature</td>
+      <td class="tblval">[[764]]</td>
+    </tr>
+	<tr>
+      <td>Engine Water Temp</td>
+      <td class="tblval">[[10]]</td>
+    </tr>
+	<tr>
+      <td>Fuel Level</td>
+      <td class="tblval">[[94]]</td><!--420 gal remain-->
+    </tr>
+  </table>
+</div>
+<hr>
+<br>
+
+<script>
+document.getElementById("test").style.visibility = "hidden";
+</script>
+<script>
+(function stpEng() {
+    var stpengstat = [[18]]; 
+    var hideimg;
+    if (stpengstat == 1) {
+        hideimg = "visible";
+    } else {
+        hideimg = "hidden"
+    }
+    document.getElementById("stpenglamp").style.visibility = hideimg;
+})();
+</script>
+<script>
+(function chkTrns() {
+    var chktrnstat = [[272]]; 
+    var hideimg;
+    if (chktrnstat == 1) {
+        hideimg = "visible";
+    } else {
+        hideimg = "hidden"
+    }
+    document.getElementById("chktranslamp").style.visibility = hideimg;
+})();
+</script>
+<script>
+(function greaser() {
+    var greaserstat = "[[73]]"; 
+    var hideimg;
+    if (greaserstat == "ON") {
+        hideimg = "visible";
+    } else {
+        hideimg = "hidden"
+    }
+    document.getElementById("greaser").style.visibility = hideimg;
+})();
+</script>
+
+<div class="btncontainer">
+<ul>
+  <li><a href="#remote">Download Log Files</a></li>
+  <li><a href="#logs">Remote Control</a></li>
+</ul>
+</div>
+
+<div class="footer">
+  <p>Copyright 2017 CS&amp;P Technologies</p>
+</div>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
+<!-- <script>
+var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+    close[i].onclick = function(){
+        var div = this.parentElement;
+        div.style.opacity = "0";
+        setTimeout(function(){ div.style.display = "none"; }, 600);
+    }
+}
+</script> -->
+
+</div>
+</body>
+</html>
