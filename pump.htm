@@ -53,40 +53,24 @@
       <th style="text-align: center">Value</th>
     </tr>
     <tr>
-      <td>Pump Speed</td>
+      <td>Pump Speed (RPM)</td>
       <td class="tblval">[[122]]</td>
     </tr>
     <tr>
-      <td>Lube Oil Pressure</td>
+      <td>Lube Oil Pressure (PSI)</td>
       <td class="tblval">[[32]]</td>
     </tr>
     <tr>
-      <td>Lube Oil Temperature</td>
+      <td>Lube Oil Temperature (F)</td>
       <td class="tblval">[[35]]</td>
     </tr>
     <tr>
-      <td>Lube Pump Drive Pressure</td>
+      <td>Lube Pump Drive Pressure (PSI)</td>
       <td class="tblval">[[30]]</td>
     </tr>
     <tr>
-      <td>Kidney Lube Pressure</td>
+      <td>Kidney Lube Pressure (PSI)</td>
       <td class="tblval">[[31]]</td>
-    </tr>
-	<tr>
-      <td>Lube Oil Level Warning</td>
-      <td class="tblval">[[46]]</td>
-    </tr>
-	<tr>
-      <td>Lube Oil Filter Warning</td>
-      <td class="tblval">[[47]]</td>
-    </tr>
-	<tr>
-      <td>Primary Kidney Filter Warning</td>
-      <td class="tblval">[[48]]</td>
-    </tr>
-	<tr>
-      <td>Secondary Kidney Filter Warning</td>
-      <td class="tblval">[[49]]</td>
     </tr>
 	<tr>
       <td>Power End Cycles</td>
@@ -101,27 +85,27 @@
       <td class="tblval">[[231]]</td>
     </tr>
 	<tr>
-      <td>Discharge Pressure</td>
+      <td>Discharge Pressure (PSI)</td>
       <td class="tblval">[[3]]</td>
     </tr>
 	<tr>
-      <td>Discharge Pressure MPa</td>
+      <td>Discharge Pressure (MPa)</td>
       <td class="tblval">[[1507]]</td>
     </tr>
 	<tr>
-      <td>Suction Pressure</td>
+      <td>Suction Pressure (PSI)</td>
       <td class="tblval">[[29]]</td>
     </tr>
 	<tr>
-      <td>Pump Rate</td>
+      <td>Pump Rate (BBL)</td>
       <td class="tblval">[[4]]</td>
     </tr>
 	<tr>
-      <td>Pump Rate m<sup>3</sup></td>
+      <td>Pump Rate (m<sup>3)</sup></td>
       <td class="tblval">[[1510]]</td>
     </tr>
 	<tr>
-      <td>Fluid End Size</td>
+      <td>Fluid End Size (In)</td>
       <td class="tblval">[[236]]</td>
     </tr>
 	<tr>
@@ -151,7 +135,36 @@
   </table>
 </div>
 <hr>
-<br>
+	
+<div>
+  <h3>Alerts</h3>
+  <div class="alert success" id="success">
+    <span class="closebtn">&times;</span>  
+    <strong>Operation Alert!</strong> Greaser is currently operating.
+  </div>
+
+  <div class="alert warning" id="lubelvlwarning">
+    <span class="closebtn">&times;</span>
+    <strong>Warning!</strong> Lube Oil level is low.
+  </div>
+
+  <div class="alert warning" id="lubefltrwarning">
+    <span class="closebtn">&times;</span>
+    <strong>Warning!</strong> Lube Oil filter is clogged.
+  </div>
+	
+  <div class="alert warning" id="kdy1fltrwarning">
+    <span class="closebtn">&times;</span>
+    <strong>Warning!</strong> Primary Kidney Lube filter is clogged.
+  </div>
+	
+<div class="alert warning" id="kdy2fltrwarning">
+    <span class="closebtn">&times;</span>
+    <strong>Warning!</strong> Secondary Kidney Lube filter is clogged.
+  </div>
+</div>
+  
+<hr>
 
 <div class="btncontainer">
 <ul>
@@ -173,6 +186,84 @@ function myFunction() {
         x.className = "topnav";
     }
 }
+</script>
+	
+<script>
+var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+    close[i].onclick = function(){
+        var div = this.parentElement;
+        div.style.opacity = "0";
+        setTimeout(function(){ div.style.display = "none"; }, 600);
+    }
+}
+</script>
+
+<script>
+(function success() {
+    var greaser = "ON"; //"[[73]]"
+    var hidesuccess;
+    if (greaser == "ON") {
+        hidesuccess = "visible";
+    } else {
+        hidesuccess = "hidden"
+    }
+    document.getElementById("success").style.visibility = hidesuccess;
+})();
+</script>
+  
+<script>
+(function lubelvlwarning() {
+    var lubelvl = 1; //[[46]] 
+    var hidewarning;
+    if (lubelvl == 1) {
+        hidewarning = "visible";
+    } else {
+        hidewarning = "hidden"
+    }
+    document.getElementById("lubelvlwarning").style.visibility = hidewarning;
+})();
+</script>
+  
+<script>
+(function lubefltrwarning() {
+    var lubefltr = 1; //[[47]] 
+    var hidewarning;
+    if (lubefltr == 1) {
+        hidewarning = "visible";
+    } else {
+        hidewarning = "hidden"
+    }
+    document.getElementById("lubefltrwarning").style.visibility = hidewarning;
+})();
+</script>
+  
+<script>
+(function kdy1fltrwarning() {
+    var kdy1fltr = 1; //[[48]] 
+    var hidewarning;
+    if (kdy1fltr == 1) {
+        hidewarning = "visible";
+    } else {
+        hidewarning = "hidden"
+    }
+    document.getElementById("kdy1fltrwarning").style.visibility = hidewarning;
+})();
+</script>
+	
+<script>
+(function kdy2fltrwarning() {
+    var kdy2fltr = 1; //[[49]] 
+    var hidewarning;
+    if (kdy2fltr == 1) {
+        hidewarning = "visible";
+    } else {
+        hidewarning = "hidden"
+    }
+    document.getElementById("kdy2fltrwarning").style.visibility = hidewarning;
+})();
 </script>
 
 </div>
