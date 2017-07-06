@@ -43,24 +43,24 @@
 <h1> <span style="font-style: oblique">CTEC</span><br>Remote Data Viewer</h1>
  </div>
  
- <div class="alert" id="alert">
-  <span class="closebtn">&times;</span>  
-  <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+<div class="alert" id="engalert">
+  <span class="closebtn">&times;</span>
+  <strong>Danger!</strong> Stop Engine lamp is active.
 </div>
 
 <div class="alert success" id="success">
   <span class="closebtn">&times;</span>  
-  <strong>Success!</strong> Indicates a successful or positive action.
+  <strong>Operation Alert!</strong> Greaser is currently operating.
 </div>
 
-<div class="alert info" id="info">
-  <span class="closebtn">&times;</span>  
-  <strong>Info!</strong> Indicates a neutral informative change or action.
-</div>
-
-<div class="alert warning" id="warning">
+<div class="alert warning" id="engwarning">
   <span class="closebtn">&times;</span>
-  <strong>Warning!</strong> Indicates a warning that might need attention.
+  <strong>Warning!</strong> Check Engine lamp is active.
+</div>
+	
+<div class="alert warning" id="trnswarning">
+  <span class="closebtn">&times;</span>
+  <strong>Warning!</strong> Check Transmission lamp is active.
 </div>
 
 <hr>
@@ -134,10 +134,19 @@
 <br>
 
 <script>
-document.getElementById("warning").style.visibility = "hidden";
+(function engwarning() {
+    var chkeng = 0; //[[17]] 
+    var hidewarning;
+    if (chkeng == 1) {
+        hidewarning = "visible";
+    } else {
+        hidewarning = "hidden"
+    }
+    document.getElementById("engwarning").style.visibility = hidewarning;
+})();
 </script>
 <script>
-(function danger() {
+(function engalert() {
     var stpeng = 0; //[[18]] 
     var hidedanger;
     if (stpeng == 1) {
@@ -145,31 +154,31 @@ document.getElementById("warning").style.visibility = "hidden";
     } else {
         hidedanger = "hidden"
     }
-    document.getElementById("alert").style.visibility = hidedanger;
+    document.getElementById("engalert").style.visibility = hidedanger;
 })();
 </script>
 <script>
-(function chkTrns() {
-    var chktrnstat = [[272]]; 
-    var hideimg;
-    if (chktrnstat == 1) {
-        hideimg = "visible";
+(function trnswarning() {
+    var chktrns = 0; //[[272]]
+    var hidewarning;
+    if (chktrns == 1) {
+        hidewarning = "visible";
     } else {
-        hideimg = "hidden"
+        hidewarning = "hidden"
     }
-    document.getElementById("chktranslamp").style.visibility = hideimg;
+    document.getElementById("trnswarning").style.visibility = hidewarning;
 })();
 </script>
 <script>
-(function greaser() {
-    var greaserstat = "[[73]]"; 
-    var hideimg;
-    if (greaserstat == "ON") {
-        hideimg = "visible";
+(function success() {
+    var greaser = "OFF"; //"[[73]]"
+    var hidesuccess;
+    if (greaser == "ON") {
+        hidesuccess = "visible";
     } else {
-        hideimg = "hidden"
+        hidesuccess = "hidden"
     }
-    document.getElementById("greaser").style.visibility = hideimg;
+    document.getElementById("success").style.visibility = hidesuccess;
 })();
 </script>
 
@@ -195,7 +204,7 @@ function myFunction() {
 }
 </script>
 
-<!-- <script>
+<script>
 var close = document.getElementsByClassName("closebtn");
 var i;
 
@@ -206,7 +215,7 @@ for (i = 0; i < close.length; i++) {
         setTimeout(function(){ div.style.display = "none"; }, 600);
     }
 }
-</script> -->
+</script>
 
 </div>
 </body>
