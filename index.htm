@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<LINK REL="SHORTCUT ICON"
+       HREF="/user/favicon.ico">
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<![endif]-->
+<meta http-equiv="pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CTEC Remote Data Viewer</title>
+<link rel="stylesheet" href="ctec-webview.css">
+<style>
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <div class="topnav" id="myTopnav">
+      <!-- <div class="dropdown">
+        <button class="dropbtn">Home</button>
+        <div class="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div> -->
+      <a href="default.htm" class="active">Home</a>
+      <a href="engine.htm">Engine</a>
+      <a href="trans.htm">Trans</a>
+      <a href="pump.htm">Pump</a>
+      <a href="process.htm">Process</a>
+      <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+    
+<div class="imghead">
+<img src="csplogo1.png" alt="csplogo1.png" style="max-width:100%;height:auto;">
+</div>
+
+<h1> <span style="font-style: oblique">CTEC</span><br>Remote Data Viewer</h1>
+ </div> 
+
+<hr>
+<h3 style="text-align: center">Unit Information</h3>
+
+<div style="overflow-x:auto;">
+  <table>
+    <tr>
+      <th>Parameter</th>
+      <th style="text-align: center">Value</th>
+    </tr>
+    <tr>
+      <td>CS&amp;P Unit Number</td>
+      <td class="tblval">[[757]]</td>
+    </tr>
+    <tr>
+      <td>Customer Unit Number</td>
+      <td class="tblval">[[758]]</td>
+    </tr>
+    <tr>
+      <td>PLC SW Version</td>
+      <td class="tblval">[[494]]</td>
+    </tr>
+    <tr>
+      <td>Local HMI SW Version</td>
+      <td class="tblval">[[1503]]</td>
+    </tr>
+  </table>
+</div>
+<hr>
+<br>
+
+<div class="btncontainer">
+<ul>
+  <li><a href="logs.htm">Download Log Files</a></li>
+  <li><a href="remote.htm">Remote Control</a></li>
+</ul>
+</div>
+
+<div class="footer">
+  <p>Copyright 2017 CS&amp;P Technologies</p>
+</div>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
+<!-- <script language="javascript">
+setTimeout(function(){
+   window.location.reload(1);
+}, 3000);
+</script> -->
+
+</div>
+</body>
+</html>
