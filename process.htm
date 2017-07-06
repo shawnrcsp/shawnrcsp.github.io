@@ -43,25 +43,7 @@
 <h1> <span style="font-style: oblique">CTEC</span><br>Remote Data Viewer</h1>
  </div>
  
-<div class="alert" id="engalert">
-  <span class="closebtn">&times;</span>
-  <strong>Danger!</strong> Stop Engine lamp is active.
-</div>
 
-<div class="alert success" id="success">
-  <span class="closebtn">&times;</span>  
-  <strong>Operation Alert!</strong> Greaser is currently operating.
-</div>
-
-<div class="alert warning" id="engwarning">
-  <span class="closebtn">&times;</span>
-  <strong>Warning!</strong> Check Engine lamp is active.
-</div>
-	
-<div class="alert warning" id="trnswarning">
-  <span class="closebtn">&times;</span>
-  <strong>Warning!</strong> Check Transmission lamp is active.
-</div>
 
 <hr>
 <h3 style="text-align: center">Process Data</h3>
@@ -133,55 +115,29 @@
 <hr>
 <br>
 
-<script>
-(function engwarning() {
-    var chkeng = 0; //[[17]] 
-    var hidewarning;
-    if (chkeng == 1) {
-        hidewarning = "visible";
-    } else {
-        hidewarning = "hidden"
-    }
-    document.getElementById("engwarning").style.visibility = hidewarning;
-})();
-</script>
-<script>
-(function engalert() {
-    var stpeng = 0; //[[18]] 
-    var hidedanger;
-    if (stpeng == 1) {
-        hidedanger = "visible";
-    } else {
-        hidedanger = "hidden"
-    }
-    document.getElementById("engalert").style.visibility = hidedanger;
-})();
-</script>
-<script>
-(function trnswarning() {
-    var chktrns = 0; //[[272]]
-    var hidewarning;
-    if (chktrns == 1) {
-        hidewarning = "visible";
-    } else {
-        hidewarning = "hidden"
-    }
-    document.getElementById("trnswarning").style.visibility = hidewarning;
-})();
-</script>
-<script>
-(function success() {
-    var greaser = "OFF"; //"[[73]]"
-    var hidesuccess;
-    if (greaser == "ON") {
-        hidesuccess = "visible";
-    } else {
-        hidesuccess = "hidden"
-    }
-    document.getElementById("success").style.visibility = hidesuccess;
-})();
-</script>
+<div>
+  <h3>Alerts</h3>
+  <div class="alert" id="engalert">
+    <span class="closebtn">&times;</span>
+    <strong>Danger!</strong> Stop Engine lamp is active.
+  </div>
 
+  <div class="alert success" id="success">
+    <span class="closebtn">&times;</span>  
+    <strong>Operation Alert!</strong> Greaser is currently operating.
+  </div>
+
+  <div class="alert warning" id="engwarning">
+    <span class="closebtn">&times;</span>
+    <strong>Warning!</strong> Check Engine lamp is active.
+  </div>
+	
+  <div class="alert warning" id="trnswarning">
+    <span class="closebtn">&times;</span>
+    <strong>Warning!</strong> Check Transmission lamp is active.
+  </div>
+</div>
+<hr>
 <div class="btncontainer">
 <ul>
   <li><a href="#remote">Download Log Files</a></li>
@@ -217,6 +173,59 @@ for (i = 0; i < close.length; i++) {
 }
 </script>
 
+<script>
+(function engwarning() {
+    var chkeng = 0; //[[17]] 
+    var hidewarning;
+    if (chkeng == 1) {
+        hidewarning = "visible";
+    } else {
+        hidewarning = "hidden"
+    }
+    document.getElementById("engwarning").style.visibility = hidewarning;
+})();
+</script>
+  
+<script>
+(function engalert() {
+    var stpeng = 0; //[[18]] 
+    var hidedanger;
+    if (stpeng == 1) {
+        hidedanger = "visible";
+    } else {
+        hidedanger = "hidden"
+    }
+    document.getElementById("engalert").style.visibility = hidedanger;
+})();
+</script>
+  
+<script>
+(function trnswarning() {
+    var chktrns = 0; //[[272]]
+    var hidewarning;
+    if (chktrns == 1) {
+        hidewarning = "visible";
+    } else {
+        hidewarning = "hidden"
+    }
+    document.getElementById("trnswarning").style.visibility = hidewarning;
+})();
+</script>
+  
+<script>
+(function success() {
+    var greaser = "OFF"; //"[[73]]"
+    var hidesuccess;
+    if (greaser == "ON") {
+        hidesuccess = "visible";
+    } else {
+        hidesuccess = "hidden"
+    }
+    document.getElementById("success").style.visibility = hidesuccess;
+})();
+</script>
+
+  
 </div>
 </body>
 </html>
