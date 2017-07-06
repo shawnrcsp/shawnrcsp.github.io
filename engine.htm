@@ -54,27 +54,27 @@
       <th style="text-align: center">Value</th>
     </tr>
     <tr>
-      <td>Engine Speed</td>
+      <td>Engine Speed (RPM)</td>
       <td class="tblval">[[15]]</td>
     </tr>
     <tr>
-      <td>Water Temp</td>
+      <td>Water Temp (F)</td>
       <td class="tblval">[[10]]</td>
     </tr>
     <tr>
-      <td>Oil Pressure</td>
+      <td>Oil Pressure (PSI)</td>
       <td class="tblval">[[13]]</td>
     </tr>
     <tr>
-      <td>Fuel Pressure</td>
+      <td>Fuel Pressure (PSI)</td>
       <td class="tblval">[[341]]</td>
     </tr>
     <tr>
-      <td>Starter Hydraulic Pressure</td>
+      <td>Starter Hydraulic Pressure (PSI)</td>
       <td class="tblval">[[25]]</td>
     </tr>
 	<tr>
-      <td>Fuel Level</td>
+      <td>Fuel Level (%)</td>
       <td class="tblval">[[94]]</td>
     </tr>
 	<tr>
@@ -86,53 +86,61 @@
       <td class="tblval">[[119]]</td>
     </tr>
 	<tr>
-      <td>Fuel Temp</td>
+      <td>Fuel Temp (F)</td>
       <td class="tblval">[[363]]</td>
     </tr>
 	<tr>
-      <td>Radiator Fan Hyd Pressure</td>
+      <td>Radiator Fan Hyd Pressure (PSI)</td>
       <td class="tblval">[[23]]</td>
     </tr>
 	<tr>
-      <td>Radiator Fan Charge Pressure</td>
+      <td>Radiator Fan Charge Pressure (PSI)</td>
       <td class="tblval">[[24]]</td>
     </tr>
 	<tr>
-      <td>Radiator Fan Speed</td>
+      <td>Radiator Fan Speed (RPM)</td>
       <td class="tblval">[[22]]</td>
     </tr>
 	<tr>
-      <td>Hydraulic Temperature</td>
+      <td>Hydraulic Temperature (F)</td>
       <td class="tblval">[[21]]</td>
     </tr>
 	<tr>
-      <td>Hydraulic Oil Level Warning</td>
-      <td class="tblval">[[54]]</td>
-    </tr>
-	<tr>
-      <td>Hydraulic Filter Warning</td>
-      <td class="tblval">[[55]]</td>
-    </tr>
-	<tr>
-      <td>%Fan Requested</td>
+      <td>Fan Requested (%)</td>
       <td class="tblval">[[269]]</td>
     </tr>
 	<tr>
-      <td>Radiator Fan mA Out</td>
+      <td>Radiator Fan Out (mA)</td>
       <td class="tblval">[[93]]</td>
-    </tr>
-	<tr>
-      <td>Check Engine Light Active</td>
-      <td class="tblval">[[17]]</td>
-    </tr>
-	<tr>
-      <td>Stop Engine Light Active</td>
-      <td class="tblval">[[18]]</td>
     </tr>
   </table>
 </div>
 <hr>
-<br>
+
+<div>
+  <h3>Alerts</h3>
+  <div class="alert" id="engalert">
+    <span class="closebtn">&times;</span>
+    <strong>Danger!</strong> Stop Engine lamp is active.
+  </div>
+
+  <div class="alert warning" id="engwarning">
+    <span class="closebtn">&times;</span>
+    <strong>Warning!</strong> Check Engine lamp is active.
+  </div>
+	
+<div class="alert warning" id="hydfltrwarning">
+    <span class="closebtn">&times;</span>
+    <strong>Warning!</strong> Hydraulic return filter is clogged.
+  </div>
+	
+<div class="alert warning" id="hydlvlwarning">
+    <span class="closebtn">&times;</span>
+    <strong>Warning!</strong> Hydraulic oil level is low.
+  </div>
+</div>
+  
+<hr>
 
 <div class="btncontainer">
 <ul>
@@ -154,6 +162,71 @@ function myFunction() {
         x.className = "topnav";
     }
 }
+</script>
+
+<script>
+var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+    close[i].onclick = function(){
+        var div = this.parentElement;
+        div.style.opacity = "0";
+        setTimeout(function(){ div.style.display = "none"; }, 600);
+    }
+}
+</script>
+
+<script>
+(function engwarning() {
+    var chkeng = 1; //[[17]] 
+    var hidewarning;
+    if (chkeng == 1) {
+        hidewarning = "visible";
+    } else {
+        hidewarning = "hidden"
+    }
+    document.getElementById("engwarning").style.visibility = hidewarning;
+})();
+</script>
+  
+<script>
+(function engalert() {
+    var stpeng = 1; //[[18]] 
+    var hidedanger;
+    if (stpeng == 1) {
+        hidedanger = "visible";
+    } else {
+        hidedanger = "hidden"
+    }
+    document.getElementById("engalert").style.visibility = hidedanger;
+})();
+</script>
+	
+<script>
+(function hydlvlwarning() {
+    var hydlvl = 1; //[[54]] 
+    var hidewarning;
+    if (hydlvl == 1) {
+        hidewarning = "visible";
+    } else {
+        hidewarning = "hidden"
+    }
+    document.getElementById("hydlvlwarning").style.visibility = hidewarning;
+})();
+</script>
+	
+<script>
+(function hydfltrwarning() {
+    var hydfltr = 1; //[[55]] 
+    var hidewarning;
+    if (hydfltr == 1) {
+        hidewarning = "visible";
+    } else {
+        hidewarning = "hidden"
+    }
+    document.getElementById("hydfltrwarning").style.visibility = hidewarning;
+})();
 </script>
 
 </div>
