@@ -36,14 +36,12 @@
       <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
     
-<div class="imghead">
-<img id="headerlogo" src="csplogo1.png" alt="csplogo1.png" style="max-width:100%;height:auto;">
+  <div class="imghead">
+    <img id="headerlogo" src="csplogo1.png" alt="csplogo1.png" style="max-width:100%;height:auto;">
+  </div>
+
+  <h1> <span style="font-style: oblique">CTEC</span><br>Remote Data Viewer</h1>
 </div>
-
-<h1> <span style="font-style: oblique">CTEC</span><br>Remote Data Viewer</h1>
- </div>
- 
-
 
 <hr>
 <h3 style="text-align: center">Process Data</h3>
@@ -113,7 +111,6 @@
   </table>
 </div>
 <hr>
-<br>
 
 <div>
   <h3>Alerts</h3>
@@ -137,12 +134,14 @@
     <strong>Warning!</strong> Check Transmission lamp is active.
   </div>
 </div>
+  
 <hr>
+  
 <div class="btncontainer">
-<ul>
-  <li><a href="#remote">Download Log Files</a></li>
-  <li><a href="#logs">Remote Control</a></li>
-</ul>
+  <ul>
+    <li><a href="#remote">Download Log Files</a></li>
+    <li><a href="#logs">Remote Control</a></li>
+  </ul>
 </div>
 
 <div class="footer">
@@ -175,7 +174,7 @@ for (i = 0; i < close.length; i++) {
 
 <script>
 (function engwarning() {
-    var chkeng = 0; //[[17]] 
+    var chkeng = 1; //[[17]] 
     var hidewarning;
     if (chkeng == 1) {
         hidewarning = "visible";
@@ -188,7 +187,7 @@ for (i = 0; i < close.length; i++) {
   
 <script>
 (function engalert() {
-    var stpeng = 0; //[[18]] 
+    var stpeng = 1; //[[18]] 
     var hidedanger;
     if (stpeng == 1) {
         hidedanger = "visible";
@@ -201,7 +200,7 @@ for (i = 0; i < close.length; i++) {
   
 <script>
 (function trnswarning() {
-    var chktrns = 0; //[[272]]
+    var chktrns = 1; //[[272]]
     var hidewarning;
     if (chktrns == 1) {
         hidewarning = "visible";
@@ -214,7 +213,7 @@ for (i = 0; i < close.length; i++) {
   
 <script>
 (function success() {
-    var greaser = "OFF"; //"[[73]]"
+    var greaser = "ON"; //"[[73]]"
     var hidesuccess;
     if (greaser == "ON") {
         hidesuccess = "visible";
